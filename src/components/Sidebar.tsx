@@ -11,6 +11,8 @@ export type TabId =
   | 'imagetools'
   | 'pdftools'
   | 'photoeditor'
+  | 'meme'
+  | 'resume'
   | 'playground'
   | 'resources'
   | 'prompts'
