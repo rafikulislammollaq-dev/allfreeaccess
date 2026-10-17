@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -19,6 +19,7 @@ const PhotoEditorPage = lazy(() => import('./pages/PhotoEditor'));
 const MemePage = lazy(() => import('./pages/Meme'));
 const ResumePage = lazy(() => import('./pages/Resume'));
 const VideoToolsPage = lazy(() => import('./pages/VideoTools'));
+const NotesPage = lazy(() => import('./pages/Notes'));
 const PlaygroundPage = lazy(() => import('./pages/Playground'));
 const ResourcesPage = lazy(() => import('./pages/Resources'));
 const PromptsPage = lazy(() => import('./pages/Prompts'));
@@ -41,6 +42,7 @@ const NAV = [
   { id: 'pdftools' as TabId, label: 'PDF Tools', icon: FileText },
   { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
   { id: 'resources' as TabId, label: 'Resources', icon: Globe },
+  { id: 'notes' as TabId, label: 'Notes', icon: Notebook },
   { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
   { id: 'history' as TabId, label: 'History', icon: HistoryIcon },
   { id: 'settings' as TabId, label: 'Settings', icon: SettingsIcon },
@@ -91,6 +93,7 @@ export default function App() {
           {tab === 'pdftools' && <PdfToolsPage />}
           {tab === 'playground' && <PlaygroundPage />}
           {tab === 'resources' && <ResourcesPage />}
+          {tab === 'notes' && <NotesPage />}
           {tab === 'prompts' && <PromptsPage />}
           {tab === 'history' && <HistoryPage />}
           {tab === 'settings' && <SettingsPage onTheme={handleTheme} />}

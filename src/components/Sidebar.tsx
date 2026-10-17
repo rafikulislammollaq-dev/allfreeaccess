@@ -14,6 +14,7 @@ export type TabId =
   | 'meme'
   | 'resume'
   | 'videotools'
+  | 'notes'
   | 'playground'
   | 'resources'
   | 'prompts'
