@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Plug, Key, Zap, Palette, Lock, Database, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Plug, Key, Zap, Palette, Lock, Database, Shield, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -30,6 +30,7 @@ const ColorToolsPage = lazy(() => import('./pages/ColorTools'));
 const TextAnalyzerPage = lazy(() => import('./pages/TextAnalyzer'));
 const EncodePage = lazy(() => import('./pages/Encode'));
 const DataConverterPage = lazy(() => import('./pages/DataConverter'));
+const SecurityPage = lazy(() => import('./pages/Security'));
 const PlaygroundPage = lazy(() => import('./pages/Playground'));
 const ResourcesPage = lazy(() => import('./pages/Resources'));
 const PromptsPage = lazy(() => import('./pages/Prompts'));
@@ -67,6 +68,7 @@ const GROUPS = [
     { id: 'textanalyzer' as TabId, label: 'Text Analyzer', icon: FileText },
     { id: 'encode' as TabId, label: 'Encode/Decode', icon: Lock },
     { id: 'dataconverter' as TabId, label: 'Data Converter', icon: Database },
+    { id: 'security' as TabId, label: 'Security', icon: Shield },
     { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
     { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
   ]},
@@ -130,6 +132,7 @@ export default function App() {
           {tab === 'textanalyzer' && <TextAnalyzerPage />}
           {tab === 'encode' && <EncodePage />}
           {tab === 'dataconverter' && <DataConverterPage />}
+          {tab === 'security' && <SecurityPage />}
           {tab === 'ai' && <AiToolsPage />}
           {tab === 'imagetools' && <ImageToolsPage />}
           {tab === 'photoeditor' && <PhotoEditorPage />}

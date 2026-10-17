@@ -19,6 +19,7 @@ export type TabId =
   | 'textanalyzer'
   | 'encode'
   | 'dataconverter'
+  | 'security'
   | 'playground'
   | 'voice'
   | 'notes'
