@@ -13,6 +13,7 @@ export type TabId =
   | 'photoeditor'
   | 'meme'
   | 'resume'
+  | 'videotools'
   | 'playground'
   | 'resources'
   | 'prompts'

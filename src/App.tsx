@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -18,6 +18,7 @@ const PdfToolsPage = lazy(() => import('./pages/PdfTools'));
 const PhotoEditorPage = lazy(() => import('./pages/PhotoEditor'));
 const MemePage = lazy(() => import('./pages/Meme'));
 const ResumePage = lazy(() => import('./pages/Resume'));
+const VideoToolsPage = lazy(() => import('./pages/VideoTools'));
 const PlaygroundPage = lazy(() => import('./pages/Playground'));
 const ResourcesPage = lazy(() => import('./pages/Resources'));
 const PromptsPage = lazy(() => import('./pages/Prompts'));
@@ -36,6 +37,7 @@ const NAV = [
   { id: 'photoeditor' as TabId, label: 'Photo Editor', icon: Wand2 },
   { id: 'meme' as TabId, label: 'Meme Gen', icon: Smile },
   { id: 'resume' as TabId, label: 'Resume', icon: ClipboardList },
+  { id: 'videotools' as TabId, label: 'Video Tools', icon: Video },
   { id: 'pdftools' as TabId, label: 'PDF Tools', icon: FileText },
   { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
   { id: 'resources' as TabId, label: 'Resources', icon: Globe },
@@ -85,6 +87,7 @@ export default function App() {
           {tab === 'photoeditor' && <PhotoEditorPage />}
           {tab === 'meme' && <MemePage />}
           {tab === 'resume' && <ResumePage />}
+          {tab === 'videotools' && <VideoToolsPage />}
           {tab === 'pdftools' && <PdfToolsPage />}
           {tab === 'playground' && <PlaygroundPage />}
           {tab === 'resources' && <ResourcesPage />}

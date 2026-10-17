@@ -1,4 +1,4 @@
-import { MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, ImagePlus, FileText, Code2, Globe, Library } from 'lucide-react';
+import { MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, ImagePlus, FileText, Video, Code2, Globe, Library } from 'lucide-react';
 import type { TabId } from '../components/Sidebar';
 
 interface Card { id: TabId; title: string; desc: string; icon: any; }
@@ -7,6 +7,7 @@ const CARDS: Card[] = [
   { id: 'chat', title: 'AI Chat', desc: 'Chat with multiple AI models, streaming.', icon: MessageSquare },
   { id: 'image', title: 'Image Gen', desc: 'Generate images from text prompts.', icon: ImageIcon },
   { id: 'imagetools', title: 'Image Tools', desc: 'Compress, resize, convert images.', icon: ImagePlus },
+  { id: 'videotools', title: 'Video Tools', desc: 'Convert, trim, compress, to GIF.', icon: Video },
   { id: 'pdftools', title: 'PDF Tools', desc: 'Merge, split, convert PDFs.', icon: FileText },
   { id: 'ai', title: 'AI Utilities', desc: 'Summarize, translate, rewrite, code.', icon: Sparkles },
   { id: 'tools', title: 'Dev Tools', desc: 'JSON, Base64, JWT, Regex, Hash & more.', icon: Wrench },
