@@ -23,6 +23,7 @@ export type TabId =
   | 'webtools'
   | 'mathtools'
   | 'timetools'
+  | 'cssplayground'
   | 'playground'
   | 'voice'
   | 'notes'

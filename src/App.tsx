@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Plug, Key, Zap, Palette, Lock, Database, Shield, Hash, Clock, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Plug, Key, Zap, Palette, Lock, Database, Shield, Hash, Clock, Layout, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -34,6 +34,7 @@ const SecurityPage = lazy(() => import('./pages/Security'));
 const WebToolsPage = lazy(() => import('./pages/WebTools'));
 const MathToolsPage = lazy(() => import('./pages/MathTools'));
 const TimeToolsPage = lazy(() => import('./pages/TimeTools'));
+const CssPlaygroundPage = lazy(() => import('./pages/CssPlayground'));
 const PlaygroundPage = lazy(() => import('./pages/Playground'));
 const ResourcesPage = lazy(() => import('./pages/Resources'));
 const PromptsPage = lazy(() => import('./pages/Prompts'));
@@ -75,6 +76,7 @@ const GROUPS = [
     { id: 'webtools' as TabId, label: 'Web Tools', icon: Globe },
     { id: 'mathtools' as TabId, label: 'Math Tools', icon: Hash },
     { id: 'timetools' as TabId, label: 'Time Tools', icon: Clock },
+    { id: 'cssplayground' as TabId, label: 'CSS Playground', icon: Layout },
     { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
     { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
   ]},
@@ -142,6 +144,7 @@ export default function App() {
           {tab === 'webtools' && <WebToolsPage />}
           {tab === 'mathtools' && <MathToolsPage />}
           {tab === 'timetools' && <TimeToolsPage />}
+          {tab === 'cssplayground' && <CssPlaygroundPage />}
           {tab === 'ai' && <AiToolsPage />}
           {tab === 'imagetools' && <ImageToolsPage />}
           {tab === 'photoeditor' && <PhotoEditorPage />}
