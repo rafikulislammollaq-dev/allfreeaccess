@@ -1,42 +1,31 @@
-# Aurora — Free AI Studio
+# Aurora — Free AI API Keys
 
-A 100% free, all-in-one creative studio in the browser. Chat with AI, generate images,
-use voice, and run developer utilities — no account, no payment, no API keys.
+Get a free AI API key instantly. No signup, no credit card, no payment.
+Use it with Claude Code, OpenCode, Cursor, VS Code, Aider, Hermes, LangChain, LlamaIndex,
+and any OpenAI-compatible client.
 
 **Live:** https://myrajibgit.github.io/allfreeaccess/
 
 ## Features
 
-- 💬 AI Chat with multiple models (streaming)
-- 🖼️ Text-to-image generation
-- 🎙️ Speech-to-text & text-to-speech
-- 🧰 14+ developer tools (JSON, Base64, JWT, Regex, Hash, Color, Markdown, Password, QR, Units, Base conv, Diff, Text stats, URL)
-- ✨ AI utilities (summarize, translate, rewrite, code explain/fix, email, brainstorm, titles)
-- 🧪 Live HTML/CSS/JS playground
-- 📚 Free resources directory (curated $0 services)
-- 📝 Prompt template library
-- 📜 History & data export
-- ⚙️ Settings (theme, models, ads)
-- 📱 PWA-ready, responsive, dark/light
+- 🔑 Instant free API key generation (in-browser)
+- 📖 API docs with free endpoints (Pollinations, OpenRouter, Hugging Face, Groq)
+- 🔌 Integration guides for Claude Code, OpenCode, Cursor, VS Code, Aider, Hermes
+- 🧪 In-app API playground
+- 🆓 100% free — no payment, no accounts
+- 📱 Responsive, dark/light, PWA-ready
 
 ## Monetization (Ads)
 
-Ad slots are placed throughout the app. To enable Google AdSense:
-
-1. Get approved at https://www.google.com/adsense
-2. Set your publisher ID in one of:
-   - `.env` file: `VITE_AD_CLIENT=ca-pub-xxxxxxxxxxxxxxxx`
-   - Or in-app Settings → Ads
-3. Rebuild & redeploy.
-
-Slots are placeholder divs until a client ID is provided, so the site works fine with zero ads.
+Ad slots are placed throughout. To enable Google AdSense:
+1. Set `VITE_AD_CLIENT=ca-pub-...` in `.env` or via Settings.
+2. Rebuild & redeploy.
 
 ## Tech
 
 - React 19 + Vite + TypeScript + Tailwind CSS v4
-- AI via [Pollinations](https://pollinations.ai) (free, no key)
+- AI via free public providers
 - Hosting via GitHub Pages (free)
-- No backend, no database — everything in localStorage
 
 ## Develop
 
@@ -48,8 +37,7 @@ npm run build
 
 ## Deploy
 
-Push to `master`/`main` triggers the GitHub Actions workflow which builds and
-deploys to GitHub Pages.
+Push to `master` triggers GitHub Actions → GitHub Pages.
 
 ## License
 

@@ -1,40 +1,30 @@
-import { MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, ImagePlus, FileText, Video, Code2, Globe, Library } from 'lucide-react';
+import { Key, Plug, Zap, Shield, Globe } from 'lucide-react';
 import type { TabId } from '../components/Sidebar';
 
 interface Card { id: TabId; title: string; desc: string; icon: any; }
 
 const CARDS: Card[] = [
-  { id: 'chat', title: 'AI Chat', desc: 'Chat with multiple AI models, streaming.', icon: MessageSquare },
-  { id: 'image', title: 'Image Gen', desc: 'Generate images from text prompts.', icon: ImageIcon },
-  { id: 'imagetools', title: 'Image Tools', desc: 'Compress, resize, convert images.', icon: ImagePlus },
-  { id: 'videotools', title: 'Video Tools', desc: 'Convert, trim, compress, to GIF.', icon: Video },
-  { id: 'pdftools', title: 'PDF Tools', desc: 'Merge, split, convert PDFs.', icon: FileText },
-  { id: 'ai', title: 'AI Utilities', desc: 'Summarize, translate, rewrite, code.', icon: Sparkles },
-  { id: 'tools', title: 'Dev Tools', desc: 'JSON, Base64, JWT, Regex, Hash & more.', icon: Wrench },
-  { id: 'playground', title: 'Playground', desc: 'Live HTML/CSS/JS editor.', icon: Code2 },
-  { id: 'voice', title: 'Voice', desc: 'Speech-to-text & text-to-speech.', icon: Mic },
-  { id: 'resources', title: 'Resources', desc: 'Curated free tools & APIs.', icon: Globe },
-  { id: 'prompts', title: 'Prompts', desc: 'Reusable prompt templates.', icon: Library },
+  { id: 'getkey', title: 'Get Free API Key', desc: 'Generate an API key instantly. No signup.', icon: Key },
+  { id: 'api', title: 'API & Integrations', desc: 'Docs, endpoints, and setup guides.', icon: Plug },
 ];
 
 export default function HomePage({ onNavigate }: { onNavigate: (t: TabId) => void }) {
   return (
     <div className="flex flex-col gap-6">
-      <div className="card text-center py-10" style={{ background: 'linear-gradient(135deg, rgba(124,92,255,.15), rgba(34,211,238,.1))' }}>
-        <div className="text-5xl mb-3">✨</div>
-        <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-2">Aurora Free AI Studio</h1>
+      <div className="card text-center py-12" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,.15), rgba(34,211,238,.1))' }}>
+        <div className="text-5xl mb-3">🔑</div>
+        <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-2">Free AI API Keys</h1>
         <p className="text-[var(--muted)] max-w-2xl mx-auto">
-          Everything you need to create, convert, and ship — 100% free, in your browser.
-          No account, no payment, no API keys.
+          Get a free API key instantly. Use it with Claude Code, OpenCode, Cursor, VS Code, Aider, Hermes,
+          and any OpenAI-compatible client. No signup, no credit card, no payment.
         </p>
         <div className="flex justify-center gap-2 mt-5 flex-wrap">
-          <button className="btn primary" onClick={() => onNavigate('chat')}>Start chatting</button>
-          <button className="btn" onClick={() => onNavigate('imagetools')}>Image tools</button>
-          <button className="btn" onClick={() => onNavigate('pdftools')}>PDF tools</button>
+          <button className="btn primary" onClick={() => onNavigate('getkey')}>Get your free key</button>
+          <button className="btn" onClick={() => onNavigate('api')}>View docs</button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {CARDS.map((c) => {
           const Icon = c.icon;
           return (
@@ -51,14 +41,32 @@ export default function HomePage({ onNavigate }: { onNavigate: (t: TabId) => voi
         })}
       </div>
 
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {[
+          { icon: Zap, title: 'Instant', desc: 'Generate a key in one click. No forms.' },
+          { icon: Shield, title: 'Free', desc: 'No payment, no limits to start.' },
+          { icon: Globe, title: 'Universal', desc: 'Works with any OpenAI-compatible tool.' },
+        ].map((f) => {
+          const Icon = f.icon;
+          return (
+            <div key={f.title} className="card flex gap-3">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[var(--panel-2)]"><Icon size={18} className="text-[var(--accent)]" /></div>
+              <div>
+                <div className="font-semibold">{f.title}</div>
+                <div className="text-sm text-[var(--muted)]">{f.desc}</div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
       <div className="card">
-        <h3 className="font-semibold mb-2">Why Aurora?</h3>
-        <ul className="text-sm text-[var(--muted)] space-y-1">
-          <li>• 100% free — no subscriptions, no hidden costs</li>
-          <li>• Runs in your browser — your data stays on your device</li>
-          <li>• No account required — start using immediately</li>
-          <li>• Open source (MIT) — inspect, fork, contribute</li>
-        </ul>
+        <h3 className="font-semibold mb-2">Supported tools</h3>
+        <div className="flex flex-wrap gap-2">
+          {['Claude Code', 'OpenCode', 'Cursor', 'VS Code (Continue/Cline)', 'Aider', 'Hermes', 'LangChain', 'LlamaIndex'].map((t) => (
+            <span key={t} className="chip">{t}</span>
+          ))}
+        </div>
       </div>
     </div>
   );

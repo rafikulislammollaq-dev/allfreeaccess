@@ -1,67 +1,24 @@
-import { useEffect, useState } from 'react';
-import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Plug, Library, History as HistoryIcon,
-  Settings as SettingsIcon, Info, Menu, Sun, Moon,
-} from 'lucide-react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { Home, Key, Plug, Settings as SettingsIcon, Info, Menu, Sun, Moon } from 'lucide-react';
 import { load } from './lib/storage';
 import Sidebar, { type TabId } from './components/Sidebar';
 import CommandPalette from './components/CommandPalette';
 import AdSlot from './components/AdSlot';
 import Footer from './components/Footer';
-import { lazy, Suspense } from 'react';
+
 const HomePage = lazy(() => import('./pages/Home'));
-const ChatPage = lazy(() => import('./pages/Chat'));
-const ImagePage = lazy(() => import('./pages/ImageGen'));
-const VoicePage = lazy(() => import('./pages/Voice'));
-const ToolsPage = lazy(() => import('./pages/Tools'));
-const AiToolsPage = lazy(() => import('./pages/AiTools'));
-const ImageToolsPage = lazy(() => import('./pages/ImageTools'));
-const PdfToolsPage = lazy(() => import('./pages/PdfTools'));
-const PhotoEditorPage = lazy(() => import('./pages/PhotoEditor'));
-const MemePage = lazy(() => import('./pages/Meme'));
-const ResumePage = lazy(() => import('./pages/Resume'));
-const VideoToolsPage = lazy(() => import('./pages/VideoTools'));
-const NotesPage = lazy(() => import('./pages/Notes'));
+const GetKeyPage = lazy(() => import('./pages/GetKey'));
 const ApiPage = lazy(() => import('./pages/Api'));
-const CalculatorsPage = lazy(() => import('./pages/Calculators'));
-const PlaygroundPage = lazy(() => import('./pages/Playground'));
-const ResourcesPage = lazy(() => import('./pages/Resources'));
-const PromptsPage = lazy(() => import('./pages/Prompts'));
-const HistoryPage = lazy(() => import('./pages/History'));
 const SettingsPage = lazy(() => import('./pages/Settings'));
 const AboutPage = lazy(() => import('./pages/About'));
 
 const GROUPS = [
   { title: 'Main', items: [
     { id: 'home' as TabId, label: 'Home', icon: Home },
-    { id: 'chat' as TabId, label: 'AI Chat', icon: MessageSquare },
-    { id: 'notes' as TabId, label: 'Notes', icon: Notebook },
-  ]},
-  { title: 'Create', items: [
-    { id: 'image' as TabId, label: 'Image Gen', icon: ImageIcon },
-    { id: 'photoeditor' as TabId, label: 'Photo Editor', icon: Wand2 },
-    { id: 'meme' as TabId, label: 'Meme Gen', icon: Smile },
-    { id: 'imagetools' as TabId, label: 'Image Tools', icon: ImagePlus },
-  ]},
-  { title: 'Documents', items: [
-    { id: 'pdftools' as TabId, label: 'PDF Tools', icon: FileText },
-    { id: 'resume' as TabId, label: 'Resume', icon: ClipboardList },
-  ]},
-  { title: 'Media', items: [
-    { id: 'videotools' as TabId, label: 'Video Tools', icon: Video },
-    { id: 'voice' as TabId, label: 'Voice', icon: Mic },
-  ]},
-  { title: 'Tools', items: [
-    { id: 'ai' as TabId, label: 'AI Utils', icon: Sparkles },
-    { id: 'tools' as TabId, label: 'Dev Tools', icon: Wrench },
-    { id: 'calculators' as TabId, label: 'Calculators', icon: Calculator },
-    { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
-    { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
+    { id: 'getkey' as TabId, label: 'Get API Key', icon: Key },
+    { id: 'api' as TabId, label: 'API & Integrations', icon: Plug },
   ]},
   { title: 'More', items: [
-    { id: 'resources' as TabId, label: 'Resources', icon: Globe },
-    { id: 'api' as TabId, label: 'API & Integrations', icon: Plug },
-    { id: 'history' as TabId, label: 'History', icon: HistoryIcon },
     { id: 'settings' as TabId, label: 'Settings', icon: SettingsIcon },
     { id: 'about' as TabId, label: 'About', icon: Info },
   ]},
@@ -89,12 +46,15 @@ export default function App() {
   return (
     <div className="layout">
       <Sidebar groups={GROUPS} active={tab} onSelect={setTab} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <CommandPalette items={CMD_ITEMS} onSelect={setTab} />
       <main className="main">
+        <CommandPalette items={CMD_ITEMS} onSelect={setTab} />
         <div className="hidden md:flex items-center justify-end mb-3 gap-2">
           <button className="btn ghost sm" onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))} title="Press Ctrl+K">
             <span className="text-[var(--muted)]">Search</span>
             <span className="kbd">Ctrl K</span>
+          </button>
+          <button className="btn ghost sm" onClick={() => handleTheme(theme === 'dark' ? 'light' : 'dark')}>
+            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
         </div>
         <div className="flex items-center justify-between mb-4 md:hidden">
@@ -107,24 +67,8 @@ export default function App() {
         <AdSlot slot="4444444444" className="mb-4" />
         <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="spinner" /></div>}>
           {tab === 'home' && <HomePage onNavigate={setTab} />}
-          {tab === 'chat' && <ChatPage />}
-          {tab === 'image' && <ImagePage />}
-          {tab === 'voice' && <VoicePage />}
-          {tab === 'tools' && <ToolsPage />}
-          {tab === 'calculators' && <CalculatorsPage />}
-          {tab === 'ai' && <AiToolsPage />}
-          {tab === 'imagetools' && <ImageToolsPage />}
-          {tab === 'photoeditor' && <PhotoEditorPage />}
-          {tab === 'meme' && <MemePage />}
-          {tab === 'resume' && <ResumePage />}
-          {tab === 'videotools' && <VideoToolsPage />}
-          {tab === 'pdftools' && <PdfToolsPage />}
-          {tab === 'playground' && <PlaygroundPage />}
-          {tab === 'resources' && <ResourcesPage />}
+          {tab === 'getkey' && <GetKeyPage />}
           {tab === 'api' && <ApiPage />}
-          {tab === 'notes' && <NotesPage />}
-          {tab === 'prompts' && <PromptsPage />}
-          {tab === 'history' && <HistoryPage />}
           {tab === 'settings' && <SettingsPage onTheme={handleTheme} />}
           {tab === 'about' && <AboutPage />}
         </Suspense>

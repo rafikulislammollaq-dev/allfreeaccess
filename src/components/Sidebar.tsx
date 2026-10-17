@@ -3,41 +3,24 @@ import AdSlot from './AdSlot';
 
 export type TabId =
   | 'home'
-  | 'chat'
-  | 'image'
-  | 'imagetools'
-  | 'photoeditor'
-  | 'meme'
-  | 'pdftools'
-  | 'videotools'
-  | 'ai'
-  | 'tools'
-  | 'calculators'
-  | 'playground'
-  | 'voice'
-  | 'notes'
-  | 'resume'
-  | 'prompts'
-  | 'resources'
+  | 'getkey'
   | 'api'
-  | 'history'
   | 'settings'
   | 'about';
 
-// navigation groups are passed from App
 interface NavItem { id: TabId; label: string; icon: LucideIcon; }
 
 interface Props {
-  items?: NavItem[];
   groups?: { title: string; items: NavItem[] }[];
+  items?: NavItem[];
   active: TabId;
   onSelect: (id: TabId) => void;
   open: boolean;
   onClose: () => void;
 }
 
-export default function Sidebar({ items, groups, active, onSelect, open, onClose }: Props) {
-  const grouped = groups && groups.length ? groups : [{ title: 'Menu', items }];
+export default function Sidebar({ groups, items, active, onSelect, open, onClose }: Props) {
+  const grouped = groups && groups.length ? groups : [{ title: 'Menu', items: items || [] }];
   return (
     <>
       {open && <div className="fixed inset-0 bg-black/60 z-40 md:hidden" onClick={onClose} />}
@@ -48,7 +31,7 @@ export default function Sidebar({ items, groups, active, onSelect, open, onClose
           </div>
           <div>
             <div className="font-bold text-base" style={{ color: 'var(--text)' }}>Aurora</div>
-            <div className="text-xs text-[var(--muted)]">Free Studio</div>
+            <div className="text-xs text-[var(--muted)]">Free API Keys</div>
           </div>
         </div>
         <nav className="flex flex-col gap-2 flex-1 overflow-y-auto scrollbar">
