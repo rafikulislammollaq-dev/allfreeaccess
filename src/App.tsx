@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { load } from './lib/storage';
 import Sidebar, { type TabId } from './components/Sidebar';
+import CommandPalette from './components/CommandPalette';
 import AdSlot from './components/AdSlot';
 import { lazy, Suspense } from 'react';
 const HomePage = lazy(() => import('./pages/Home'));
@@ -27,27 +28,41 @@ const HistoryPage = lazy(() => import('./pages/History'));
 const SettingsPage = lazy(() => import('./pages/Settings'));
 const AboutPage = lazy(() => import('./pages/About'));
 
-const NAV = [
-  { id: 'home' as TabId, label: 'Home', icon: Home },
-  { id: 'chat' as TabId, label: 'Chat', icon: MessageSquare },
-  { id: 'image' as TabId, label: 'Image', icon: ImageIcon },
-  { id: 'voice' as TabId, label: 'Voice', icon: Mic },
-  { id: 'tools' as TabId, label: 'Tools', icon: Wrench },
-  { id: 'ai' as TabId, label: 'AI Utils', icon: Sparkles },
-  { id: 'imagetools' as TabId, label: 'Image Tools', icon: ImagePlus },
-  { id: 'photoeditor' as TabId, label: 'Photo Editor', icon: Wand2 },
-  { id: 'meme' as TabId, label: 'Meme Gen', icon: Smile },
-  { id: 'resume' as TabId, label: 'Resume', icon: ClipboardList },
-  { id: 'videotools' as TabId, label: 'Video Tools', icon: Video },
-  { id: 'pdftools' as TabId, label: 'PDF Tools', icon: FileText },
-  { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
-  { id: 'resources' as TabId, label: 'Resources', icon: Globe },
-  { id: 'notes' as TabId, label: 'Notes', icon: Notebook },
-  { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
-  { id: 'history' as TabId, label: 'History', icon: HistoryIcon },
-  { id: 'settings' as TabId, label: 'Settings', icon: SettingsIcon },
-  { id: 'about' as TabId, label: 'About', icon: Info },
+const GROUPS = [
+  { title: 'Main', items: [
+    { id: 'home' as TabId, label: 'Home', icon: Home },
+    { id: 'chat' as TabId, label: 'AI Chat', icon: MessageSquare },
+    { id: 'notes' as TabId, label: 'Notes', icon: Notebook },
+  ]},
+  { title: 'Create', items: [
+    { id: 'image' as TabId, label: 'Image Gen', icon: ImageIcon },
+    { id: 'photoeditor' as TabId, label: 'Photo Editor', icon: Wand2 },
+    { id: 'meme' as TabId, label: 'Meme Gen', icon: Smile },
+    { id: 'imagetools' as TabId, label: 'Image Tools', icon: ImagePlus },
+  ]},
+  { title: 'Documents', items: [
+    { id: 'pdftools' as TabId, label: 'PDF Tools', icon: FileText },
+    { id: 'resume' as TabId, label: 'Resume', icon: ClipboardList },
+  ]},
+  { title: 'Media', items: [
+    { id: 'videotools' as TabId, label: 'Video Tools', icon: Video },
+    { id: 'voice' as TabId, label: 'Voice', icon: Mic },
+  ]},
+  { title: 'Tools', items: [
+    { id: 'ai' as TabId, label: 'AI Utils', icon: Sparkles },
+    { id: 'tools' as TabId, label: 'Dev Tools', icon: Wrench },
+    { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
+    { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
+  ]},
+  { title: 'More', items: [
+    { id: 'resources' as TabId, label: 'Resources', icon: Globe },
+    { id: 'history' as TabId, label: 'History', icon: HistoryIcon },
+    { id: 'settings' as TabId, label: 'Settings', icon: SettingsIcon },
+    { id: 'about' as TabId, label: 'About', icon: Info },
+  ]},
 ];
+
+const CMD_ITEMS = GROUPS.flatMap((g) => g.items.map((it) => ({ id: it.id, label: it.label })));
 
 export default function App() {
   const [tab, setTab] = useState<TabId>('home');
@@ -68,8 +83,15 @@ export default function App() {
 
   return (
     <div className="layout">
-      <Sidebar items={NAV} active={tab} onSelect={setTab} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar groups={GROUPS} active={tab} onSelect={setTab} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <CommandPalette items={CMD_ITEMS} onSelect={setTab} />
       <main className="main">
+        <div className="hidden md:flex items-center justify-end mb-3 gap-2">
+          <button className="btn ghost sm" onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))} title="Press Ctrl+K">
+            <span className="text-[var(--muted)]">Search</span>
+            <span className="kbd">Ctrl K</span>
+          </button>
+        </div>
         <div className="flex items-center justify-between mb-4 md:hidden">
           <button className="btn" onClick={() => setSidebarOpen(true)}><Menu size={16} /></button>
           <div className="font-bold gradient-text">Aurora</div>
