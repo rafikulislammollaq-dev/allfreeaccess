@@ -4,7 +4,7 @@ Get a free AI API key instantly. No signup, no credit card, no payment.
 Use it with Claude Code, OpenCode, Cursor, VS Code, Aider, Hermes, LangChain, LlamaIndex,
 and any OpenAI-compatible client.
 
-**Live:** https://myrajibgit.github.io/allfreeaccess/
+**Live:** https://rafikulislammollaq-dev.github.io/allfreeaccess/
 
 ## Features
 
