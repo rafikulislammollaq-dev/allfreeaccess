@@ -15,6 +15,7 @@ export type TabId =
   | 'tools'
   | 'calculators'
   | 'generators'
+  | 'colortools'
   | 'playground'
   | 'voice'
   | 'notes'
