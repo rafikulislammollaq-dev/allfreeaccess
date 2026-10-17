@@ -12,6 +12,7 @@ export type TabId =
   | 'videotools'
   | 'ai'
   | 'tools'
+  | 'calculators'
   | 'playground'
   | 'voice'
   | 'notes'

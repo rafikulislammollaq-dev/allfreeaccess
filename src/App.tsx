@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -21,6 +21,7 @@ const MemePage = lazy(() => import('./pages/Meme'));
 const ResumePage = lazy(() => import('./pages/Resume'));
 const VideoToolsPage = lazy(() => import('./pages/VideoTools'));
 const NotesPage = lazy(() => import('./pages/Notes'));
+const CalculatorsPage = lazy(() => import('./pages/Calculators'));
 const PlaygroundPage = lazy(() => import('./pages/Playground'));
 const ResourcesPage = lazy(() => import('./pages/Resources'));
 const PromptsPage = lazy(() => import('./pages/Prompts'));
@@ -51,6 +52,7 @@ const GROUPS = [
   { title: 'Tools', items: [
     { id: 'ai' as TabId, label: 'AI Utils', icon: Sparkles },
     { id: 'tools' as TabId, label: 'Dev Tools', icon: Wrench },
+    { id: 'calculators' as TabId, label: 'Calculators', icon: Calculator },
     { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
     { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
   ]},
@@ -106,6 +108,7 @@ export default function App() {
           {tab === 'image' && <ImagePage />}
           {tab === 'voice' && <VoicePage />}
           {tab === 'tools' && <ToolsPage />}
+          {tab === 'calculators' && <CalculatorsPage />}
           {tab === 'ai' && <AiToolsPage />}
           {tab === 'imagetools' && <ImageToolsPage />}
           {tab === 'photoeditor' && <PhotoEditorPage />}
