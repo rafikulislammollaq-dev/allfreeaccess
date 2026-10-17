@@ -20,6 +20,7 @@ export type TabId =
   | 'encode'
   | 'dataconverter'
   | 'security'
+  | 'webtools'
   | 'playground'
   | 'voice'
   | 'notes'

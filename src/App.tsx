@@ -31,6 +31,7 @@ const TextAnalyzerPage = lazy(() => import('./pages/TextAnalyzer'));
 const EncodePage = lazy(() => import('./pages/Encode'));
 const DataConverterPage = lazy(() => import('./pages/DataConverter'));
 const SecurityPage = lazy(() => import('./pages/Security'));
+const WebToolsPage = lazy(() => import('./pages/WebTools'));
 const PlaygroundPage = lazy(() => import('./pages/Playground'));
 const ResourcesPage = lazy(() => import('./pages/Resources'));
 const PromptsPage = lazy(() => import('./pages/Prompts'));
@@ -69,6 +70,7 @@ const GROUPS = [
     { id: 'encode' as TabId, label: 'Encode/Decode', icon: Lock },
     { id: 'dataconverter' as TabId, label: 'Data Converter', icon: Database },
     { id: 'security' as TabId, label: 'Security', icon: Shield },
+    { id: 'webtools' as TabId, label: 'Web Tools', icon: Globe },
     { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
     { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
   ]},
@@ -133,6 +135,7 @@ export default function App() {
           {tab === 'encode' && <EncodePage />}
           {tab === 'dataconverter' && <DataConverterPage />}
           {tab === 'security' && <SecurityPage />}
+          {tab === 'webtools' && <WebToolsPage />}
           {tab === 'ai' && <AiToolsPage />}
           {tab === 'imagetools' && <ImageToolsPage />}
           {tab === 'photoeditor' && <PhotoEditorPage />}
