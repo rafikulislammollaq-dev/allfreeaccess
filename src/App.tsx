@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -15,6 +15,7 @@ const ToolsPage = lazy(() => import('./pages/Tools'));
 const AiToolsPage = lazy(() => import('./pages/AiTools'));
 const ImageToolsPage = lazy(() => import('./pages/ImageTools'));
 const PdfToolsPage = lazy(() => import('./pages/PdfTools'));
+const PhotoEditorPage = lazy(() => import('./pages/PhotoEditor'));
 const PlaygroundPage = lazy(() => import('./pages/Playground'));
 const ResourcesPage = lazy(() => import('./pages/Resources'));
 const PromptsPage = lazy(() => import('./pages/Prompts'));
@@ -30,6 +31,7 @@ const NAV = [
   { id: 'tools' as TabId, label: 'Tools', icon: Wrench },
   { id: 'ai' as TabId, label: 'AI Utils', icon: Sparkles },
   { id: 'imagetools' as TabId, label: 'Image Tools', icon: ImagePlus },
+  { id: 'photoeditor' as TabId, label: 'Photo Editor', icon: Wand2 },
   { id: 'pdftools' as TabId, label: 'PDF Tools', icon: FileText },
   { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
   { id: 'resources' as TabId, label: 'Resources', icon: Globe },
@@ -76,6 +78,7 @@ export default function App() {
           {tab === 'tools' && <ToolsPage />}
           {tab === 'ai' && <AiToolsPage />}
           {tab === 'imagetools' && <ImageToolsPage />}
+          {tab === 'photoeditor' && <PhotoEditorPage />}
           {tab === 'pdftools' && <PdfToolsPage />}
           {tab === 'playground' && <PlaygroundPage />}
           {tab === 'resources' && <ResourcesPage />}

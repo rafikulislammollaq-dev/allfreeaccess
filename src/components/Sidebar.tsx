@@ -10,6 +10,7 @@ export type TabId =
   | 'ai'
   | 'imagetools'
   | 'pdftools'
+  | 'photoeditor'
   | 'playground'
   | 'resources'
   | 'prompts'
