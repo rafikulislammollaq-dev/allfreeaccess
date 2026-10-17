@@ -148,6 +148,15 @@ export default function ChatPage() {
           <div className="flex gap-2">
             <button className="btn ghost text-xs" onClick={() => setShowSystem((s) => !s)}>System</button>
             <button className="btn ghost text-xs" onClick={exportChat} disabled={!active}><Download size={12} /> Export</button>
+            {active && active.messages.length > 0 && (
+              <button className="btn ghost text-xs" onClick={() => {
+                const msgs = [...active.messages];
+                while (msgs.length && msgs[msgs.length - 1].role === 'assistant') msgs.pop();
+                const lastUser = [...msgs].reverse().find((m) => m.role === 'user')?.content || '';
+                setChats((prev) => prev.map((x) => x.id === active.id ? { ...x, messages: msgs } : x));
+                setInput(lastUser);
+              }}>Retry last</button>
+            )}
             {active && <button className="btn danger text-xs" onClick={() => deleteChat(active.id)}><Trash2 size={12} /></button>}
           </div>
         </div>
