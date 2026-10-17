@@ -23,6 +23,11 @@ export default function ToolsPage() {
     { id: 'hash', label: 'Hash' },
     { id: 'text', label: 'Text' },
     { id: 'url', label: 'URL' },
+    { id: 'password', label: 'Password' },
+    { id: 'qr', label: 'QR Code' },
+    { id: 'units', label: 'Units' },
+    { id: 'base', label: 'Base Conv' },
+    { id: 'diff', label: 'Diff' },
   ];
 
   return (
@@ -41,6 +46,11 @@ export default function ToolsPage() {
       {tool === 'hash' && <HashTool />}
       {tool === 'text' && <TextTool />}
       {tool === 'url' && <UrlTool />}
+      {tool === 'password' && <PasswordTool />}
+      {tool === 'qr' && <QrTool />}
+      {tool === 'units' && <UnitsTool />}
+      {tool === 'base' && <BaseTool />}
+      {tool === 'diff' && <DiffTool />}
     </div>
   );
 }
@@ -279,6 +289,181 @@ function UrlTool() {
         <button className="btn" onClick={() => copy(output)} disabled={!output}>{copied ? <Check size={14} /> : <Copy size={14} />} Copy</button>
       </div>
       {output && <pre className="mt-3 p-3 rounded-lg bg-[var(--panel-2)] overflow-auto text-sm break-all">{output}</pre>}
+    </Panel>
+  );
+}
+function PasswordTool() {
+  const [len, setLen] = useState(16);
+  const [upper, setUpper] = useState(true);
+  const [lower, setLower] = useState(true);
+  const [nums, setNums] = useState(true);
+  const [syms, setSyms] = useState(true);
+  const [out, setOut] = useState('');
+  const gen = () => {
+    let chars = '';
+    if (upper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (lower) chars += 'abcdefghijklmnopqrstuvwxyz';
+    if (nums) chars += '0123456789';
+    if (syms) chars += '!@#$%^&*()_+-=[]{};:,.?';
+    if (!chars) { setOut(''); return; }
+    let r = '';
+    const arr = new Uint32Array(len);
+    crypto.getRandomValues(arr);
+    for (let i = 0; i < len; i++) r += chars[arr[i] % chars.length];
+    setOut(r);
+  };
+  const { copied, copy } = useCopy();
+  return (
+    <Panel title="Password Generator">
+      <div className="flex items-center gap-3 mb-3">
+        <label className="text-xs text-[var(--muted)]">Length {len}</label>
+        <input type="range" min="4" max="64" value={len} onChange={(e) => setLen(Number(e.target.value))} className="flex-1" />
+      </div>
+      <div className="flex flex-wrap gap-3 mb-3">
+        {[
+          ['Uppercase', upper, setUpper],
+          ['Lowercase', lower, setLower],
+          ['Numbers', nums, setNums],
+          ['Symbols', syms, setSyms],
+        ].map(([label, val, set]: any) => (
+          <label key={label} className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={val} onChange={(e) => set(e.target.checked)} /> {label}
+          </label>
+        ))}
+      </div>
+      <div className="flex gap-2">
+        <button className="btn primary" onClick={gen}>Generate</button>
+        <button className="btn" onClick={() => copy(out)} disabled={!out}>{copied ? <Check size={14} /> : <Copy size={14} />} Copy</button>
+      </div>
+      {out && <pre className="mt-3 p-3 rounded-lg bg-[var(--panel-2)] font-mono break-all">{out}</pre>}
+    </Panel>
+  );
+}
+
+function QrTool() {
+  const [text, setText] = useState('https://github.com/myrajibgit/allfreeaccess');
+  const [size, setSize] = useState(256);
+  const url = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}`;
+  return (
+    <Panel title="QR Code Generator">
+      <input className="input" value={text} onChange={(e) => setText(e.target.value)} placeholder="Text or URL..." />
+      <div className="flex items-center gap-3 mt-3">
+        <label className="text-xs text-[var(--muted)]">Size {size}px</label>
+        <input type="range" min="128" max="512" step="32" value={size} onChange={(e) => setSize(Number(e.target.value))} className="flex-1" />
+      </div>
+      {text && (
+        <div className="mt-4 flex flex-col items-center gap-2">
+          <img src={url} alt="qr" className="rounded-lg border border-[var(--border)]" />
+          <a className="btn text-xs" href={url} download="qr.png" target="_blank" rel="noreferrer">Download</a>
+        </div>
+      )}
+    </Panel>
+  );
+}
+
+function UnitsTool() {
+  const [val, setVal] = useState('1');
+  const [from, setFrom] = useState('km');
+  const [to, setTo] = useState('mi');
+  const factors: Record<string, number> = { km: 1000, mi: 1609.34, m: 1, ft: 0.3048, cm: 0.01, in: 0.0254, kg: 1, lb: 0.453592, g: 0.001, oz: 0.0283495, l: 1, gal: 3.78541, ml: 0.001 };
+  const groups: Record<string, string[]> = {
+    length: ['km', 'mi', 'm', 'ft', 'cm', 'in'],
+    weight: ['kg', 'lb', 'g', 'oz'],
+    volume: ['l', 'gal', 'ml'],
+  };
+  const groupOf = (u: string) => Object.keys(groups).find((g) => groups[g].includes(u))!;
+  const result = (() => {
+    const n = Number(val);
+    if (isNaN(n)) return '';
+    if (groupOf(from) !== groupOf(to)) return 'Incompatible units';
+    return String((n * factors[from]) / factors[to]);
+  })();
+  const allUnits = Object.values(groups).flat();
+  return (
+    <Panel title="Unit Converter">
+      <div className="grid-2">
+        <input className="input" type="number" value={val} onChange={(e) => setVal(e.target.value)} />
+        <div className="flex gap-2">
+          <select className="select" value={from} onChange={(e) => setFrom(e.target.value)}>
+            {allUnits.map((u) => <option key={u} value={u}>{u}</option>)}
+          </select>
+          <span className="self-center">?</span>
+          <select className="select" value={to} onChange={(e) => setTo(e.target.value)}>
+            {allUnits.map((u) => <option key={u} value={u}>{u}</option>)}
+          </select>
+        </div>
+      </div>
+      <div className="mt-3 p-3 rounded-lg bg-[var(--panel-2)]">
+        <div className="text-xs text-[var(--muted)]">Result</div>
+        <div className="text-xl font-bold">{result}</div>
+      </div>
+    </Panel>
+  );
+}
+
+function BaseTool() {
+  const [val, setVal] = useState('255');
+  const [from, setFrom] = useState(10);
+  const [to, setTo] = useState(16);
+  const result = (() => {
+    try {
+      const n = parseInt(val, from);
+      if (isNaN(n)) return 'Invalid';
+      return n.toString(to).toUpperCase();
+    } catch { return 'Error'; }
+  })();
+  return (
+    <Panel title="Number Base Converter">
+      <div className="grid-2">
+        <input className="input font-mono" value={val} onChange={(e) => setVal(e.target.value)} placeholder="value" />
+        <div className="flex gap-2">
+          <select className="select" value={from} onChange={(e) => setFrom(Number(e.target.value))}>
+            {[2, 8, 10, 16].map((b) => <option key={b} value={b}>Base {b}</option>)}
+          </select>
+          <span className="self-center">?</span>
+          <select className="select" value={to} onChange={(e) => setTo(Number(e.target.value))}>
+            {[2, 8, 10, 16].map((b) => <option key={b} value={b}>Base {b}</option>)}
+          </select>
+        </div>
+      </div>
+      <div className="mt-3 p-3 rounded-lg bg-[var(--panel-2)]">
+        <div className="text-xs text-[var(--muted)]">Result</div>
+        <div className="text-xl font-mono font-bold">{result}</div>
+      </div>
+    </Panel>
+  );
+}
+
+function DiffTool() {
+  const [a, setA] = useState('');
+  const [b, setB] = useState('');
+  const diff = useMemo(() => {
+    const la = a.split('\n');
+    const lb = b.split('\n');
+    const out: { type: 'same' | 'add' | 'del'; text: string }[] = [];
+    const max = Math.max(la.length, lb.length);
+    for (let i = 0; i < max; i++) {
+      if (la[i] === lb[i]) out.push({ type: 'same', text: la[i] ?? '' });
+      else {
+        if (la[i] !== undefined) out.push({ type: 'del', text: la[i] });
+        if (lb[i] !== undefined) out.push({ type: 'add', text: lb[i] });
+      }
+    }
+    return out;
+  }, [a, b]);
+  return (
+    <Panel title="Text Diff">
+      <div className="grid-2">
+        <textarea className="textarea" rows={8} value={a} onChange={(e) => setA(e.target.value)} placeholder="Original..." />
+        <textarea className="textarea" rows={8} value={b} onChange={(e) => setB(e.target.value)} placeholder="Modified..." />
+      </div>
+      <div className="mt-3 p-3 rounded-lg bg-[var(--panel-2)] font-mono text-sm max-h-64 overflow-auto">
+        {diff.map((d, i) => (
+          <div key={i} style={{ color: d.type === 'add' ? 'var(--good)' : d.type === 'del' ? 'var(--bad)' : 'var(--text)' }}>
+            {d.type === 'add' ? '+ ' : d.type === 'del' ? '- ' : '  '}{d.text}
+          </div>
+        ))}
+      </div>
     </Panel>
   );
 }

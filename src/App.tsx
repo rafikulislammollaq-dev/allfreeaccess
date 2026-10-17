@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  MessageSquare, Image as ImageIcon, Mic, Wrench, Library, History as HistoryIcon,
+  MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -10,6 +10,9 @@ import ChatPage from './pages/Chat';
 import ImagePage from './pages/ImageGen';
 import VoicePage from './pages/Voice';
 import ToolsPage from './pages/Tools';
+import AiToolsPage from './pages/AiTools';
+import PlaygroundPage from './pages/Playground';
+import ResourcesPage from './pages/Resources';
 import PromptsPage from './pages/Prompts';
 import HistoryPage from './pages/History';
 import SettingsPage from './pages/Settings';
@@ -20,6 +23,9 @@ const NAV = [
   { id: 'image' as TabId, label: 'Image', icon: ImageIcon },
   { id: 'voice' as TabId, label: 'Voice', icon: Mic },
   { id: 'tools' as TabId, label: 'Tools', icon: Wrench },
+  { id: 'ai' as TabId, label: 'AI Utils', icon: Sparkles },
+  { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
+  { id: 'resources' as TabId, label: 'Resources', icon: Globe },
   { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
   { id: 'history' as TabId, label: 'History', icon: HistoryIcon },
   { id: 'settings' as TabId, label: 'Settings', icon: SettingsIcon },
@@ -59,6 +65,9 @@ export default function App() {
         {tab === 'image' && <ImagePage />}
         {tab === 'voice' && <VoicePage />}
         {tab === 'tools' && <ToolsPage />}
+        {tab === 'ai' && <AiToolsPage />}
+        {tab === 'playground' && <PlaygroundPage />}
+        {tab === 'resources' && <ResourcesPage />}
         {tab === 'prompts' && <PromptsPage />}
         {tab === 'history' && <HistoryPage />}
         {tab === 'settings' && <SettingsPage onTheme={handleTheme} />}
