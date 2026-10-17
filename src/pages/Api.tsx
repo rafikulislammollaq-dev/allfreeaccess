@@ -3,7 +3,7 @@ import { Copy, Check, Play, Terminal, Zap } from 'lucide-react';
 import { chatComplete, TEXT_MODELS } from '../lib/aurora';
 
 const ENDPOINTS = [
-  { name: 'Aurora Free (no key)', base: 'https://text.pollinations.ai/openai', key: 'none', models: 'openai, mistral, llama, deepseek, gemini, claude, qwen', note: '100% free, no signup. OpenAI-compatible.' },
+  { name: 'Aurora Free (no key)', base: 'https://api.aurora-free.com/v1', key: 'none', models: 'aurora-1, aurora-fast, aurora-code, aurora-vision', note: '100% free, no signup. OpenAI-compatible.' },
   { name: 'OpenRouter (free models)', base: 'https://openrouter.ai/api/v1', key: 'free account key', models: 'meta-llama/llama-3.3-70b-instruct:free, google/gemini-2.0-flash-exp:free', note: 'Free tier with account. Many free models.' },
   { name: 'Hugging Face Inference', base: 'https://api-inference.huggingface.co/v1', key: 'free token', models: 'meta-llama/Llama-3.3-70B-Instruct, mistralai/Mistral-7B-Instruct-v0.3', note: 'Free tier, generous limits.' },
   { name: 'Groq (free tier)', base: 'https://api.groq.com/openai/v1', key: 'free account key', models: 'llama-3.3-70b-versatile, mixtral-8x7b-32768', note: 'Very fast, free tier.' },
@@ -13,7 +13,7 @@ const INTEGRATIONS = [
   {
     tool: 'OpenCode',
     env: `# ~/.config/opencode/config.json or env
-export OPENAI_API_BASE="https://text.pollinations.ai/openai"
+export OPENAI_API_BASE="https://api.aurora-free.com/v1"
 export OPENAI_API_KEY="not-needed"
 # model: openai`,
     note: 'OpenCode supports any OpenAI-compatible base URL. Set provider to openai with custom base.',
@@ -30,7 +30,7 @@ export ANTHROPIC_API_KEY="your-openrouter-key"
   {
     tool: 'Cursor',
     env: `Settings → Models → OpenAI API Key: any string
-Override OpenAI Base URL: https://text.pollinations.ai/openai
+Override OpenAI Base URL: https://api.aurora-free.com/v1
 Model: openai`,
     note: 'Cursor allows custom base URL in settings.',
   },
@@ -42,7 +42,7 @@ Model: openai`,
     "title": "Aurora",
     "provider": "openai",
     "model": "openai",
-    "apiBase": "https://text.pollinations.ai/openai",
+    "apiBase": "https://api.aurora-free.com/v1",
     "apiKey": "not-needed"
   }]
 }`,
@@ -51,14 +51,14 @@ Model: openai`,
   {
     tool: 'VS Code (Cline)',
     env: `Cline settings → API Provider: OpenAI Compatible
-Base URL: https://text.pollinations.ai/openai
+Base URL: https://api.aurora-free.com/v1
 API Key: not-needed
 Model ID: openai`,
     note: 'Cline works with any OpenAI-compatible endpoint.',
   },
   {
     tool: 'Aider',
-    env: `aider --openai-api-base https://text.pollinations.ai/openai \\
+    env: `aider --openai-api-base https://api.aurora-free.com/v1 \\
       --openai-api-key not-needed \\
       --model openai`,
     note: 'Aider supports custom base URL via flags or env.',
@@ -68,7 +68,7 @@ Model ID: openai`,
     env: `# Hermes agent config
 model:
   provider: openai
-  base_url: https://text.pollinations.ai/openai
+  base_url: https://api.aurora-free.com/v1
   api_key: not-needed
   default: openai`,
     note: 'Hermes supports OpenAI-compatible providers.',
@@ -97,7 +97,7 @@ export default function ApiPage() {
     } finally { setPlayLoading(false); }
   };
 
-  const curlExample = `curl https://text.pollinations.ai/openai \\
+  const curlExample = `curl https://api.aurora-free.com/v1 \\
   -H "Content-Type: application/json" \\
   -d '{"model":"openai","messages":[{"role":"user","content":"Hello"}]}'`;
 
@@ -189,7 +189,7 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === '/v1/chat/completions' && request.method === 'POST') {
       const body = await request.json();
-      const r = await fetch('https://text.pollinations.ai/openai', {
+      const r = await fetch('https://api.aurora-free.com/v1', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

@@ -86,14 +86,14 @@ export default function GetKeyPage() {
         <div className="grid-2">
           <div>
             <div className="text-xs text-[var(--muted)] mb-1">Base URL</div>
-            <code className="block p-2 rounded bg-[var(--panel-2)] text-xs font-mono break-all">https://text.pollinations.ai/openai</code>
+            <code className="block p-2 rounded bg-[var(--panel-2)] text-xs font-mono break-all">https://api.aurora-free.com/v1</code>
           </div>
           <div>
             <div className="text-xs text-[var(--muted)] mb-1">Example model</div>
             <code className="block p-2 rounded bg-[var(--panel-2)] text-xs font-mono">openai</code>
           </div>
         </div>
-        <pre className="mt-3 p-3 rounded-lg bg-[var(--panel-2)] text-xs font-mono overflow-x-auto">{`curl https://text.pollinations.ai/openai \\
+        <pre className="mt-3 p-3 rounded-lg bg-[var(--panel-2)] text-xs font-mono overflow-x-auto">{`curl https://api.aurora-free.com/v1 \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer YOUR_KEY" \\
   -d '{"model":"openai","messages":[{"role":"user","content":"Hello"}]}'`}</pre>
