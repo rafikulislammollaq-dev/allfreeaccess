@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Send, Plus, Trash2, Download, Copy, StopCircle } from 'lucide-react';
-import { chatStream, TEXT_MODELS, type ChatMessage } from '../lib/pollinations';
+import { chatStream, TEXT_MODELS, type ChatMessage } from '../lib/aurora';
 import { load, save, uid } from '../lib/storage';
 import AdSlot from '../components/AdSlot';
 
@@ -170,7 +170,7 @@ export default function ChatPage() {
             <div className="m-auto text-center text-[var(--muted)] max-w-md">
               <div className="text-2xl mb-2">💬</div>
               <div className="font-semibold mb-1">Start a conversation</div>
-              <div className="text-sm">Ask anything. Powered by free AI via Pollinations.</div>
+              <div className="text-sm">Ask anything. Powered by Aurora free AI.</div>
             </div>
           ) : (
             active.messages.map((m, i) => (

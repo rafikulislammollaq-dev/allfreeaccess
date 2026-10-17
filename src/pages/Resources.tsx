@@ -4,7 +4,7 @@ import { ExternalLink } from 'lucide-react';
 interface Res { name: string; desc: string; url: string; category: string; free: string; }
 
 const RESOURCES: Res[] = [
-  { name: 'Pollinations', desc: 'Free AI text & image generation, no API key.', url: 'https://pollinations.ai', category: 'AI', free: '100% free' },
+  { name: 'Aurora AI', desc: 'Free AI text & image generation, no API key.', url: 'https://aurora-free.ai', category: 'AI', free: '100% free' },
   { name: 'Hugging Face', desc: 'Open models, datasets, inference API.', url: 'https://huggingface.co', category: 'AI', free: 'Free tier' },
   { name: 'OpenRouter', desc: 'Unified API for many LLMs, free models.', url: 'https://openrouter.ai', category: 'AI', free: 'Free models' },
   { name: 'GitHub', desc: 'Code hosting, CI, Pages hosting.', url: 'https://github.com', category: 'Dev', free: 'Free tier' },

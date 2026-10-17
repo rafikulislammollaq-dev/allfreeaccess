@@ -14,6 +14,7 @@ export type TabId =
   | 'ai'
   | 'tools'
   | 'calculators'
+  | 'generators'
   | 'playground'
   | 'voice'
   | 'notes'

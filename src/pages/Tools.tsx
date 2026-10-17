@@ -28,6 +28,8 @@ export default function ToolsPage() {
     { id: 'units', label: 'Units' },
     { id: 'base', label: 'Base Conv' },
     { id: 'diff', label: 'Diff' },
+    { id: 'random', label: 'Random' },
+    { id: 'sql', label: 'SQL' },
   ];
 
   return (
@@ -51,6 +53,8 @@ export default function ToolsPage() {
       {tool === 'units' && <UnitsTool />}
       {tool === 'base' && <BaseTool />}
       {tool === 'diff' && <DiffTool />}
+      {tool === 'random' && <RandomTool />}
+      {tool === 'sql' && <SqlTool />}
     </div>
   );
 }
@@ -464,6 +468,71 @@ function DiffTool() {
           </div>
         ))}
       </div>
+    </Panel>
+  );
+}
+function RandomTool() {
+  const [type, setType] = useState('uuid');
+  const [count, setCount] = useState(5);
+  const [out, setOut] = useState('');
+  const gen = () => {
+    const arr: string[] = [];
+    for (let i = 0; i < count; i++) {
+      if (type === 'uuid') arr.push(crypto.randomUUID());
+      else if (type === 'int') arr.push(String(Math.floor(Math.random() * 1000)));
+      else if (type === 'float') arr.push(Math.random().toFixed(4));
+      else if (type === 'bool') arr.push(Math.random() > 0.5 ? 'true' : 'false');
+      else if (type === 'hex') { const a = new Uint8Array(16); crypto.getRandomValues(a); arr.push(Array.from(a).map(b=>b.toString(16).padStart(2,'0')).join('')); }
+      else if (type === 'name') { const f=['Alex','Sam','Jordan','Taylor','Morgan','Casey','Riley','Jamie']; const l=['Smith','Lee','Kim','Patel','Garcia','Chen','Brown','Davis']; arr.push(f[Math.floor(Math.random()*f.length)]+' '+l[Math.floor(Math.random()*l.length)]); }
+      else if (type === 'email') { const d=['gmail.com','yahoo.com','outlook.com']; arr.push('user'+Math.floor(Math.random()*9999)+'@'+d[Math.floor(Math.random()*d.length)]); }
+    }
+    setOut(arr.join('\n'));
+  };
+  const { copied, copy } = useCopy();
+  return (
+    <Panel title="Random Data Generator">
+      <div className="flex gap-2 mb-3">
+        <select className="select" value={type} onChange={(e) => setType(e.target.value)}>
+          <option value="uuid">UUID</option><option value="int">Integer</option><option value="float">Float</option>
+          <option value="bool">Boolean</option><option value="hex">Hex string</option><option value="name">Name</option>
+          <option value="email">Email</option>
+        </select>
+        <input className="input" type="number" style={{ width: 100 }} value={count} onChange={(e) => setCount(Number(e.target.value))} />
+        <button className="btn primary" onClick={gen}>Generate</button>
+        <button className="btn" onClick={() => copy(out)} disabled={!out}>{copied ? <Check size={14} /> : <Copy size={14} />} Copy</button>
+      </div>
+      {out && <textarea className="textarea" rows={8} value={out} readOnly />}
+    </Panel>
+  );
+}
+
+function SqlTool() {
+  const [input, setInput] = useState('select * from users where id=1');
+  const [output, setOutput] = useState('');
+  const format = () => {
+    let s = input.trim();
+    // basic keyword capitalization + newlines
+    const keywords = ['SELECT','FROM','WHERE','AND','OR','JOIN','LEFT','RIGHT','INNER','OUTER','ON','GROUP','BY','ORDER','HAVING','LIMIT','INSERT','INTO','VALUES','UPDATE','SET','DELETE','CREATE','TABLE','ALTER','DROP'];
+    keywords.forEach((k) => {
+      const re = new RegExp('\\b'+k.toLowerCase()+'\\b','gi');
+      s = s.replace(re, k);
+    });
+    s = s.replace(/\s+/g, ' ').trim();
+    // add newlines before major keywords
+    ['FROM','WHERE','AND','OR','JOIN','LEFT','RIGHT','INNER','GROUP','ORDER','HAVING','LIMIT','VALUES','SET'].forEach((k) => {
+      s = s.replace(new RegExp('\\s+'+k+'\\b','g'), '\n'+k);
+    });
+    setOutput(s);
+  };
+  const { copied, copy } = useCopy();
+  return (
+    <Panel title="SQL Formatter">
+      <textarea className="textarea" rows={6} value={input} onChange={(e) => setInput(e.target.value)} placeholder="Paste SQL..." />
+      <div className="flex gap-2 mt-3">
+        <button className="btn primary" onClick={format}>Format</button>
+        <button className="btn" onClick={() => copy(output)} disabled={!output}>{copied ? <Check size={14} /> : <Copy size={14} />} Copy</button>
+      </div>
+      {output && <pre className="mt-3 p-3 rounded-lg bg-[var(--panel-2)] text-sm font-mono whitespace-pre-wrap">{output}</pre>}
     </Panel>
   );
 }

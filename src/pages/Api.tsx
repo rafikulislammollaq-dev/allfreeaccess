@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Copy, Check, Play, Terminal, Zap } from 'lucide-react';
-import { chatComplete, TEXT_MODELS } from '../lib/pollinations';
+import { chatComplete, TEXT_MODELS } from '../lib/aurora';
 
 const ENDPOINTS = [
   { name: 'Aurora Free (no key)', base: 'https://text.pollinations.ai/openai', key: 'none', models: 'openai, mistral, llama, deepseek, gemini, claude, qwen', note: '100% free, no signup. OpenAI-compatible.' },
@@ -39,7 +39,7 @@ Model: openai`,
     env: `# ~/.continue/config.json
 {
   "models": [{
-    "title": "Pollinations",
+    "title": "Aurora",
     "provider": "openai",
     "model": "openai",
     "apiBase": "https://text.pollinations.ai/openai",
@@ -107,7 +107,7 @@ export default function ApiPage() {
         <h2 className="font-bold text-lg mb-2 flex items-center gap-2"><Zap size={18} /> Free API Access</h2>
         <p className="text-sm text-[var(--muted)]">
           Aurora provides free, OpenAI-compatible API access through public providers. No payment, no API keys required
-          for Pollinations. Use these endpoints in Claude Code, OpenCode, Cursor, VS Code, Aider, Hermes, and any
+          for Aurora. Use these endpoints in Claude Code, OpenCode, Cursor, VS Code, Aider, Hermes, and any
           OpenAI-compatible client.
         </p>
       </div>

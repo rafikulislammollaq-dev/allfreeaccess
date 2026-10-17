@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Download, Sparkles, RefreshCw, Copy } from 'lucide-react';
-import { imageUrl, IMAGE_MODELS, fetchImageBlob } from '../lib/pollinations';
+import { imageUrl, IMAGE_MODELS, fetchImageBlob } from '../lib/aurora';
 import { load, save, uid } from '../lib/storage';
 import AdSlot from '../components/AdSlot';
 

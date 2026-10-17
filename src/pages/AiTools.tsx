@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Sparkles, Copy, Check, Loader2 } from 'lucide-react';
-import { chatComplete, TEXT_MODELS } from '../lib/pollinations';
+import { chatComplete, TEXT_MODELS } from '../lib/aurora';
 
 const TASKS = [
   { id: 'summarize', label: 'Summarize', prompt: (t: string) => `Summarize the following text in clear bullet points:\n\n${t}` },

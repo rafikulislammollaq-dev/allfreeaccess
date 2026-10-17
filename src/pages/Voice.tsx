@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Mic, Volume2, Square, Copy, Trash2 } from 'lucide-react';
-import { chatComplete, TEXT_MODELS } from '../lib/pollinations';
+import { chatComplete, TEXT_MODELS } from '../lib/aurora';
 
 export default function VoicePage() {
   const [transcript, setTranscript] = useState('');

@@ -9,7 +9,7 @@ and any OpenAI-compatible client.
 ## Features
 
 - 🔑 Instant free API key generation (in-browser)
-- 📖 API docs with free endpoints (Pollinations, OpenRouter, Hugging Face, Groq)
+- 📖 API docs with free endpoints (Aurora, OpenRouter, Hugging Face, Groq)
 - 🔌 Integration guides for Claude Code, OpenCode, Cursor, VS Code, Aider, Hermes
 - 🧪 In-app API playground
 - 🆓 100% free — no payment, no accounts

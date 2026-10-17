@@ -14,7 +14,7 @@ export const TEXT_MODELS = [
   { id: 'llama', name: 'Llama' },
   { id: 'deepseek', name: 'DeepSeek' },
   { id: 'gemini', name: 'Gemini' },
-  { id: 'claude', name: 'Claude (via Pollinations)' },
+  { id: 'claude', name: 'Claude' },
   { id: 'qwen', name: 'Qwen' },
 ];
 
