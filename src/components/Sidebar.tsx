@@ -21,6 +21,7 @@ export type TabId =
   | 'dataconverter'
   | 'security'
   | 'webtools'
+  | 'mathtools'
   | 'playground'
   | 'voice'
   | 'notes'

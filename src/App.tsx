@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Plug, Key, Zap, Palette, Lock, Database, Shield, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Plug, Key, Zap, Palette, Lock, Database, Shield, Hash, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -32,6 +32,7 @@ const EncodePage = lazy(() => import('./pages/Encode'));
 const DataConverterPage = lazy(() => import('./pages/DataConverter'));
 const SecurityPage = lazy(() => import('./pages/Security'));
 const WebToolsPage = lazy(() => import('./pages/WebTools'));
+const MathToolsPage = lazy(() => import('./pages/MathTools'));
 const PlaygroundPage = lazy(() => import('./pages/Playground'));
 const ResourcesPage = lazy(() => import('./pages/Resources'));
 const PromptsPage = lazy(() => import('./pages/Prompts'));
@@ -71,6 +72,7 @@ const GROUPS = [
     { id: 'dataconverter' as TabId, label: 'Data Converter', icon: Database },
     { id: 'security' as TabId, label: 'Security', icon: Shield },
     { id: 'webtools' as TabId, label: 'Web Tools', icon: Globe },
+    { id: 'mathtools' as TabId, label: 'Math Tools', icon: Hash },
     { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
     { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
   ]},
@@ -136,6 +138,7 @@ export default function App() {
           {tab === 'dataconverter' && <DataConverterPage />}
           {tab === 'security' && <SecurityPage />}
           {tab === 'webtools' && <WebToolsPage />}
+          {tab === 'mathtools' && <MathToolsPage />}
           {tab === 'ai' && <AiToolsPage />}
           {tab === 'imagetools' && <ImageToolsPage />}
           {tab === 'photoeditor' && <PhotoEditorPage />}
