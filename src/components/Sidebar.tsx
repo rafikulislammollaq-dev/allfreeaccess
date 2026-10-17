@@ -18,6 +18,7 @@ export type TabId =
   | 'colortools'
   | 'textanalyzer'
   | 'encode'
+  | 'dataconverter'
   | 'playground'
   | 'voice'
   | 'notes'
