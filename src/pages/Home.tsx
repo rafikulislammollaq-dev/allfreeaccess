@@ -1,11 +1,9 @@
-import { MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, ImagePlus, FileText, Video, Code2, Globe, Library, Key } from 'lucide-react';
+import { MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, ImagePlus, FileText, Video, Code2, Globe, Library } from 'lucide-react';
 import type { TabId } from '../components/Sidebar';
 
 interface Card { id: TabId; title: string; desc: string; icon: any; }
 
 const CARDS: Card[] = [
-  { id: 'getkey', title: 'Get Free API Key', desc: 'Generate an API key instantly. No signup.', icon: Key },
-  { id: 'api', title: 'API & Integrations', desc: 'Docs, endpoints, and setup guides.', icon: Globe },
   { id: 'chat', title: 'AI Chat', desc: 'Chat with multiple AI models, streaming.', icon: MessageSquare },
   { id: 'image', title: 'Image Gen', desc: 'Generate images from text prompts.', icon: ImageIcon },
   { id: 'imagetools', title: 'Image Tools', desc: 'Compress, resize, convert images.', icon: ImagePlus },

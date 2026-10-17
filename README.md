@@ -1,17 +1,14 @@
-# Aurora — Free AI API Keys
+# Aurora — Free AI Studio
 
-Get a free AI API key instantly. No signup, no credit card, no payment.
-Use it with Claude Code, OpenCode, Cursor, VS Code, Aider, Hermes, LangChain, LlamaIndex,
-and any OpenAI-compatible client.
+A free in-browser AI studio. No signup, no credit card, no payment.
 
 **Live:** https://rafikulislammollaq-dev.github.io/allfreeaccess/
 
 ## Features
 
-- 🔑 Instant free API key generation (in-browser)
-- 📖 API docs with free endpoints (Aurora, OpenRouter, Hugging Face, Groq)
-- 🔌 Integration guides for Claude Code, OpenCode, Cursor, VS Code, Aider, Hermes
-- 🧪 In-app API playground
+- 🤖 AI chat, image generation, and voice tools
+- 🧰 30+ utilities: PDF, image, video, dev, calculator, and converter tools
+- 🧪 In-app HTML/CSS/JS playground
 - 🆓 100% free — no payment, no accounts
 - 📱 Responsive, dark/light, PWA-ready
 

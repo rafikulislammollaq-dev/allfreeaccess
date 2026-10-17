@@ -3,7 +3,6 @@ import AdSlot from './AdSlot';
 
 export type TabId =
   | 'home'
-  | 'getkey'
   | 'chat'
   | 'image'
   | 'imagetools'
@@ -30,7 +29,6 @@ export type TabId =
   | 'resume'
   | 'prompts'
   | 'resources'
-  | 'api'
   | 'history'
   | 'settings'
   | 'about';
@@ -58,7 +56,7 @@ export default function Sidebar({ groups, items, active, onSelect, open, onClose
           </div>
           <div>
             <div className="font-bold text-base" style={{ color: 'var(--text)' }}>Aurora</div>
-            <div className="text-xs text-[var(--muted)]">Free API Keys</div>
+            <div className="text-xs text-[var(--muted)]">Free AI Studio</div>
           </div>
         </div>
         <nav className="flex flex-col gap-2 flex-1 overflow-y-auto scrollbar">

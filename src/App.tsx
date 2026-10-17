@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Plug, Key, Zap, Palette, Lock, Database, Shield, Hash, Clock, Layout, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Zap, Palette, Lock, Database, Shield, Hash, Clock, Layout, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -10,7 +10,6 @@ import AdSlot from './components/AdSlot';
 import Footer from './components/Footer';
 import { lazy, Suspense } from 'react';
 const HomePage = lazy(() => import('./pages/Home'));
-const GetKeyPage = lazy(() => import('./pages/GetKey'));
 const ChatPage = lazy(() => import('./pages/Chat'));
 const ImagePage = lazy(() => import('./pages/ImageGen'));
 const VoicePage = lazy(() => import('./pages/Voice'));
@@ -23,7 +22,6 @@ const MemePage = lazy(() => import('./pages/Meme'));
 const ResumePage = lazy(() => import('./pages/Resume'));
 const VideoToolsPage = lazy(() => import('./pages/VideoTools'));
 const NotesPage = lazy(() => import('./pages/Notes'));
-const ApiPage = lazy(() => import('./pages/Api'));
 const CalculatorsPage = lazy(() => import('./pages/Calculators'));
 const GeneratorsPage = lazy(() => import('./pages/Generators'));
 const ColorToolsPage = lazy(() => import('./pages/ColorTools'));
@@ -45,7 +43,6 @@ const AboutPage = lazy(() => import('./pages/About'));
 const GROUPS = [
   { title: 'Main', items: [
     { id: 'home' as TabId, label: 'Home', icon: Home },
-    { id: 'getkey' as TabId, label: 'Get API Key', icon: Key },
     { id: 'chat' as TabId, label: 'AI Chat', icon: MessageSquare },
     { id: 'notes' as TabId, label: 'Notes', icon: Notebook },
   ]},
@@ -82,7 +79,6 @@ const GROUPS = [
   ]},
   { title: 'More', items: [
     { id: 'resources' as TabId, label: 'Resources', icon: Globe },
-    { id: 'api' as TabId, label: 'API & Integrations', icon: Plug },
     { id: 'history' as TabId, label: 'History', icon: HistoryIcon },
     { id: 'settings' as TabId, label: 'Settings', icon: SettingsIcon },
     { id: 'about' as TabId, label: 'About', icon: Info },
@@ -129,7 +125,6 @@ export default function App() {
         <AdSlot slot="4444444444" className="mb-4" />
         <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="spinner" /></div>}>
           {tab === 'home' && <HomePage onNavigate={setTab} />}
-          {tab === 'getkey' && <GetKeyPage />}
           {tab === 'chat' && <ChatPage />}
           {tab === 'image' && <ImagePage />}
           {tab === 'voice' && <VoicePage />}
@@ -154,7 +149,6 @@ export default function App() {
           {tab === 'pdftools' && <PdfToolsPage />}
           {tab === 'playground' && <PlaygroundPage />}
           {tab === 'resources' && <ResourcesPage />}
-          {tab === 'api' && <ApiPage />}
           {tab === 'notes' && <NotesPage />}
           {tab === 'prompts' && <PromptsPage />}
           {tab === 'history' && <HistoryPage />}
