@@ -99,7 +99,7 @@ export default function GetKeyPage() {
   -d '{"model":"openai","messages":[{"role":"user","content":"Hello"}]}'`}</pre>
         <p className="text-xs text-[var(--muted)] mt-2">
           Note: The free tier uses public providers under the hood. Your key is a client-side identifier for tracking and
-          rate-limiting; the actual AI is provided free by Pollinations and partners.
+          rate-limiting; the actual AI is provided free by our partners.
         </p>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { Copy, Check, Play, Terminal, Zap } from 'lucide-react';
 import { chatComplete, TEXT_MODELS } from '../lib/pollinations';
 
 const ENDPOINTS = [
-  { name: 'Pollinations (no key)', base: 'https://text.pollinations.ai/openai', key: 'none', models: 'openai, mistral, llama, deepseek, gemini, claude, qwen', note: '100% free, no signup. OpenAI-compatible.' },
+  { name: 'Aurora Free (no key)', base: 'https://text.pollinations.ai/openai', key: 'none', models: 'openai, mistral, llama, deepseek, gemini, claude, qwen', note: '100% free, no signup. OpenAI-compatible.' },
   { name: 'OpenRouter (free models)', base: 'https://openrouter.ai/api/v1', key: 'free account key', models: 'meta-llama/llama-3.3-70b-instruct:free, google/gemini-2.0-flash-exp:free', note: 'Free tier with account. Many free models.' },
   { name: 'Hugging Face Inference', base: 'https://api-inference.huggingface.co/v1', key: 'free token', models: 'meta-llama/Llama-3.3-70B-Instruct, mistralai/Mistral-7B-Instruct-v0.3', note: 'Free tier, generous limits.' },
   { name: 'Groq (free tier)', base: 'https://api.groq.com/openai/v1', key: 'free account key', models: 'llama-3.3-70b-versatile, mixtral-8x7b-32768', note: 'Very fast, free tier.' },

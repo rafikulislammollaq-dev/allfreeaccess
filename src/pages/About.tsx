@@ -32,7 +32,7 @@ export default function AboutPage() {
       <div className="card">
         <h3 className="font-semibold mb-2">Tech</h3>
         <p className="text-sm text-[var(--muted)]">
-          React + Vite + Tailwind. AI via free public providers (Pollinations). Hosting via GitHub Pages.
+          React + Vite + Tailwind. AI via free public providers. Hosting via GitHub Pages.
         </p>
       </div>
     </div>
