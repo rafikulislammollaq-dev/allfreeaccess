@@ -1,0 +1,10 @@
+{
+  "name": "Aurora Free AI Studio",
+  "short_name": "Aurora",
+  "description": "Free AI chat, image generation, voice tools, and developer utilities.",
+  "start_url": "/allfreeaccess/",
+  "display": "standalone",
+  "background_color": "#0b0d12",
+  "theme_color": "#7c5cff",
+  "icons": []
+}
