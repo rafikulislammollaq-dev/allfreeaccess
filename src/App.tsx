@@ -7,6 +7,7 @@ import { load } from './lib/storage';
 import Sidebar, { type TabId } from './components/Sidebar';
 import CommandPalette from './components/CommandPalette';
 import AdSlot from './components/AdSlot';
+import Footer from './components/Footer';
 import { lazy, Suspense } from 'react';
 const HomePage = lazy(() => import('./pages/Home'));
 const ChatPage = lazy(() => import('./pages/Chat'));
@@ -124,6 +125,7 @@ export default function App() {
           {tab === 'settings' && <SettingsPage onTheme={handleTheme} />}
           {tab === 'about' && <AboutPage />}
         </Suspense>
+        <Footer />
       </main>
     </div>
   );
