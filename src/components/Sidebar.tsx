@@ -19,6 +19,7 @@ export type TabId =
   | 'resume'
   | 'prompts'
   | 'resources'
+  | 'api'
   | 'history'
   | 'settings'
   | 'about';

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Wand2, Smile, ClipboardList, Video, Notebook, Calculator, Plug, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
@@ -22,6 +22,7 @@ const MemePage = lazy(() => import('./pages/Meme'));
 const ResumePage = lazy(() => import('./pages/Resume'));
 const VideoToolsPage = lazy(() => import('./pages/VideoTools'));
 const NotesPage = lazy(() => import('./pages/Notes'));
+const ApiPage = lazy(() => import('./pages/Api'));
 const CalculatorsPage = lazy(() => import('./pages/Calculators'));
 const PlaygroundPage = lazy(() => import('./pages/Playground'));
 const ResourcesPage = lazy(() => import('./pages/Resources'));
@@ -59,6 +60,7 @@ const GROUPS = [
   ]},
   { title: 'More', items: [
     { id: 'resources' as TabId, label: 'Resources', icon: Globe },
+    { id: 'api' as TabId, label: 'API & Integrations', icon: Plug },
     { id: 'history' as TabId, label: 'History', icon: HistoryIcon },
     { id: 'settings' as TabId, label: 'Settings', icon: SettingsIcon },
     { id: 'about' as TabId, label: 'About', icon: Info },
@@ -119,6 +121,7 @@ export default function App() {
           {tab === 'pdftools' && <PdfToolsPage />}
           {tab === 'playground' && <PlaygroundPage />}
           {tab === 'resources' && <ResourcesPage />}
+          {tab === 'api' && <ApiPage />}
           {tab === 'notes' && <NotesPage />}
           {tab === 'prompts' && <PromptsPage />}
           {tab === 'history' && <HistoryPage />}
