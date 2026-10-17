@@ -7,6 +7,8 @@ export type TabId =
   | 'voice'
   | 'tools'
   | 'ai'
+  | 'imagetools'
+  | 'pdftools'
   | 'playground'
   | 'resources'
   | 'prompts'

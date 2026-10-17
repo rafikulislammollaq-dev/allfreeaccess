@@ -1,22 +1,25 @@
 import { useEffect, useState } from 'react';
 import {
-  MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, Library, History as HistoryIcon,
+  MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
 import Sidebar, { type TabId } from './components/Sidebar';
 import AdSlot from './components/AdSlot';
-import ChatPage from './pages/Chat';
-import ImagePage from './pages/ImageGen';
-import VoicePage from './pages/Voice';
-import ToolsPage from './pages/Tools';
-import AiToolsPage from './pages/AiTools';
-import PlaygroundPage from './pages/Playground';
-import ResourcesPage from './pages/Resources';
-import PromptsPage from './pages/Prompts';
-import HistoryPage from './pages/History';
-import SettingsPage from './pages/Settings';
-import AboutPage from './pages/About';
+import { lazy, Suspense } from 'react';
+const ChatPage = lazy(() => import('./pages/Chat'));
+const ImagePage = lazy(() => import('./pages/ImageGen'));
+const VoicePage = lazy(() => import('./pages/Voice'));
+const ToolsPage = lazy(() => import('./pages/Tools'));
+const AiToolsPage = lazy(() => import('./pages/AiTools'));
+const ImageToolsPage = lazy(() => import('./pages/ImageTools'));
+const PdfToolsPage = lazy(() => import('./pages/PdfTools'));
+const PlaygroundPage = lazy(() => import('./pages/Playground'));
+const ResourcesPage = lazy(() => import('./pages/Resources'));
+const PromptsPage = lazy(() => import('./pages/Prompts'));
+const HistoryPage = lazy(() => import('./pages/History'));
+const SettingsPage = lazy(() => import('./pages/Settings'));
+const AboutPage = lazy(() => import('./pages/About'));
 
 const NAV = [
   { id: 'chat' as TabId, label: 'Chat', icon: MessageSquare },
@@ -24,6 +27,8 @@ const NAV = [
   { id: 'voice' as TabId, label: 'Voice', icon: Mic },
   { id: 'tools' as TabId, label: 'Tools', icon: Wrench },
   { id: 'ai' as TabId, label: 'AI Utils', icon: Sparkles },
+  { id: 'imagetools' as TabId, label: 'Image Tools', icon: ImagePlus },
+  { id: 'pdftools' as TabId, label: 'PDF Tools', icon: FileText },
   { id: 'playground' as TabId, label: 'Playground', icon: Code2 },
   { id: 'resources' as TabId, label: 'Resources', icon: Globe },
   { id: 'prompts' as TabId, label: 'Prompts', icon: Library },
@@ -61,17 +66,21 @@ export default function App() {
           </button>
         </div>
         <AdSlot slot="4444444444" className="mb-4" />
-        {tab === 'chat' && <ChatPage />}
-        {tab === 'image' && <ImagePage />}
-        {tab === 'voice' && <VoicePage />}
-        {tab === 'tools' && <ToolsPage />}
-        {tab === 'ai' && <AiToolsPage />}
-        {tab === 'playground' && <PlaygroundPage />}
-        {tab === 'resources' && <ResourcesPage />}
-        {tab === 'prompts' && <PromptsPage />}
-        {tab === 'history' && <HistoryPage />}
-        {tab === 'settings' && <SettingsPage onTheme={handleTheme} />}
-        {tab === 'about' && <AboutPage />}
+        <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="spinner" /></div>}>
+          {tab === 'chat' && <ChatPage />}
+          {tab === 'image' && <ImagePage />}
+          {tab === 'voice' && <VoicePage />}
+          {tab === 'tools' && <ToolsPage />}
+          {tab === 'ai' && <AiToolsPage />}
+          {tab === 'imagetools' && <ImageToolsPage />}
+          {tab === 'pdftools' && <PdfToolsPage />}
+          {tab === 'playground' && <PlaygroundPage />}
+          {tab === 'resources' && <ResourcesPage />}
+          {tab === 'prompts' && <PromptsPage />}
+          {tab === 'history' && <HistoryPage />}
+          {tab === 'settings' && <SettingsPage onTheme={handleTheme} />}
+          {tab === 'about' && <AboutPage />}
+        </Suspense>
       </main>
     </div>
   );
