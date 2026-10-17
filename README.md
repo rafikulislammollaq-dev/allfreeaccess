@@ -1,32 +1,56 @@
-# React + TypeScript + Vite
+# Aurora — Free AI Studio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A 100% free, all-in-one creative studio in the browser. Chat with AI, generate images,
+use voice, and run developer utilities — no account, no payment, no API keys.
 
-Currently, two official plugins are available:
+**Live:** https://myrajibgit.github.io/allfreeaccess/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- 💬 AI Chat with multiple models (streaming)
+- 🖼️ Text-to-image generation
+- 🎙️ Speech-to-text & text-to-speech
+- 🧰 14+ developer tools (JSON, Base64, JWT, Regex, Hash, Color, Markdown, Password, QR, Units, Base conv, Diff, Text stats, URL)
+- ✨ AI utilities (summarize, translate, rewrite, code explain/fix, email, brainstorm, titles)
+- 🧪 Live HTML/CSS/JS playground
+- 📚 Free resources directory (curated $0 services)
+- 📝 Prompt template library
+- 📜 History & data export
+- ⚙️ Settings (theme, models, ads)
+- 📱 PWA-ready, responsive, dark/light
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Monetization (Ads)
 
-## Expanding the Oxlint configuration
+Ad slots are placed throughout the app. To enable Google AdSense:
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+1. Get approved at https://www.google.com/adsense
+2. Set your publisher ID in one of:
+   - `.env` file: `VITE_AD_CLIENT=ca-pub-xxxxxxxxxxxxxxxx`
+   - Or in-app Settings → Ads
+3. Rebuild & redeploy.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+Slots are placeholder divs until a client ID is provided, so the site works fine with zero ads.
+
+## Tech
+
+- React 19 + Vite + TypeScript + Tailwind CSS v4
+- AI via [Pollinations](https://pollinations.ai) (free, no key)
+- Hosting via GitHub Pages (free)
+- No backend, no database — everything in localStorage
+
+## Develop
+
+```bash
+npm install
+npm run dev
+npm run build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Deploy
+
+Push to `master`/`main` triggers the GitHub Actions workflow which builds and
+deploys to GitHub Pages.
+
+## License
+
+MIT
