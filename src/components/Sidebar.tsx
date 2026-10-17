@@ -22,6 +22,7 @@ export type TabId =
   | 'security'
   | 'webtools'
   | 'mathtools'
+  | 'timetools'
   | 'playground'
   | 'voice'
   | 'notes'
