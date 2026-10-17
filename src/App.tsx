@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import {
-  MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Library, History as HistoryIcon,
+  Home, MessageSquare, Image as ImageIcon, Mic, Wrench, Sparkles, Code2, Globe, FileText, ImagePlus, Library, History as HistoryIcon,
   Settings as SettingsIcon, Info, Menu, Sun, Moon,
 } from 'lucide-react';
 import { load } from './lib/storage';
 import Sidebar, { type TabId } from './components/Sidebar';
 import AdSlot from './components/AdSlot';
 import { lazy, Suspense } from 'react';
+const HomePage = lazy(() => import('./pages/Home'));
 const ChatPage = lazy(() => import('./pages/Chat'));
 const ImagePage = lazy(() => import('./pages/ImageGen'));
 const VoicePage = lazy(() => import('./pages/Voice'));
@@ -22,6 +23,7 @@ const SettingsPage = lazy(() => import('./pages/Settings'));
 const AboutPage = lazy(() => import('./pages/About'));
 
 const NAV = [
+  { id: 'home' as TabId, label: 'Home', icon: Home },
   { id: 'chat' as TabId, label: 'Chat', icon: MessageSquare },
   { id: 'image' as TabId, label: 'Image', icon: ImageIcon },
   { id: 'voice' as TabId, label: 'Voice', icon: Mic },
@@ -38,7 +40,7 @@ const NAV = [
 ];
 
 export default function App() {
-  const [tab, setTab] = useState<TabId>('chat');
+  const [tab, setTab] = useState<TabId>('home');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     const s = load<any>('aurora.settings', { theme: 'dark' });
@@ -67,6 +69,7 @@ export default function App() {
         </div>
         <AdSlot slot="4444444444" className="mb-4" />
         <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="spinner" /></div>}>
+          {tab === 'home' && <HomePage onNavigate={setTab} />}
           {tab === 'chat' && <ChatPage />}
           {tab === 'image' && <ImagePage />}
           {tab === 'voice' && <VoicePage />}

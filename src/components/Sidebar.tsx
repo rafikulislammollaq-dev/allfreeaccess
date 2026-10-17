@@ -2,6 +2,7 @@ import type { LucideIcon } from 'lucide-react';
 import AdSlot from './AdSlot';
 
 export type TabId =
+  | 'home'
   | 'chat'
   | 'image'
   | 'voice'
